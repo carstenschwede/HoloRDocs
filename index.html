@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+		<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+    <title>HoloR API Reference</title>
+
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +88,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;command or code&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,9 +103,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="command or code">command or code</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -112,8 +112,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://gitlab.com/holor/holor'>GitLab</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -121,226 +120,286 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p><img alt="HoloR Image" src="images/holor_homeappliances.jpg" /></p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p><strong>What is HoloR?</strong></p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
-<h1 id="authentication">Authentication</h1>
+<h1 id="preparation">Preparation</h1>
+
+<p>In order to develop stuff for HoloR you <strong>need</strong> the following</p>
+
+<ul>
+<li><strong><a href="https://node.jsorg">Node.js LTS 6</a></strong> (&gt;= 6.9.0)</li>
+<li><strong><a href="https://www.google.de/chrome/browser/desktop/">Google Chrome</a></strong> or other recent ES6 browser</li>
+<li><strong><a href="https://git-scm.com/downloads">git</a></strong></li>
+</ul>
+
+<p>I further recommend installing and using</p>
+
+<ul>
+<li><strong><a href="https://code.visualstudio.com/">Visual Studio Code</a></strong> &amp; <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a></li>
+<li><strong><a href="https://www.sourcetreeapp.com/">SourceTree</a></strong></li>
+</ul>
+
+<p>These should be available for Mac OS X, Linux and Windows.</p>
+
+<h2 id="access-gitlab-repository">Access GitLab repository</h2>
+
+<p>Register at <a href="http://gitlab.com/">http://gitlab.com</a> and send your username to <a href="mailto:cschwede@techfak.uni-bielefeld.de"/>cschwede@techfak.uni-bielefeld.de</a></p>
+
+<h2 id="download-repository">Download Repository</h2>
+
+<p>Once you have been given access to the repository, you can clone it locally.
+This might take some time depending on the projects history and current size.</p>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Clone using git CLI, make sure you have added your SSH public key to GitLab</p>
 </blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight plaintext"><code>git clone git@gitlab.com:holoR/HoloR.git
 </code></pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Clone using Git GUI, e.g. SourceTree</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
+<h2 id="project-structure">Project structure</h2>
 
-<h3 id="http-request">HTTP Request</h3>
+<p>The project is structured as seen to the right.
+Most of the time you will be working in the directories marked with ✅.</p>
+<pre class="highlight plaintext"><code>$&gt; cd HoloR
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+$&gt; ls
 
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+├── lib
+│   ├── core
+│   ├── plugins ✅
+│   └── services ✅
+├── node_modules
+├── resources
+├── rooms
+│   ├── AmiLab
+│   └── HoloRBox
+├── src
+│   └── scenes ✅
+│   ├── styles
+│   ├── app.js
+│   └── requirements.js
+│   └── scenes.js
+├── tools
+├── typings
+├── vendor
+├── index.html
+├── jsconfig.json
+├── package.json
+├── start.js
+├── typings.json
+└── webpack.config.js
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<h2 id="install-holor-dependencies">Install HoloR dependencies</h2>
+<pre class="highlight plaintext"><code>npm install
+node start services -i
 </code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+
+<p>This might take a while.</p>
+
+<h2 id="start-holor">Start HoloR</h2>
+<pre class="highlight plaintext"><code>node start help
+node start frontend -s Dummy
+node start services
+</code></pre>
+
+<p>Open HoloR with your favourite browser at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+
+<aside class="warning">You can change quality settings via url (e.g. <code>http://localhost:8080/?quality=low</code>), valid quality settings are *mobile, low, medium, high, ultra*</aside>
+
+<aside class="notice">You can supply options, see <code>node start --help</code>, e.g. &rsquo;-f&rsquo; for simulating a viewer or &rsquo;-l&rsquo; for showing the error overlay</aside>
+
+<h2 id="navigating-in-holor">Navigating in HoloR</h2>
+
+<ul>
+<li>use mouse to move around (left: rotate, right: translate, scroll: zoom)</li>
+<li>&ldquo;p&rdquo; is for projection mode</li>
+<li>&ldquo;d&rdquo; is for debug mode</li>
+<li>&ldquo;g&rdquo; toggles GUI</li>
+<li>&ldquo;h&rdquo; toggles helpers</li>
+</ul>
+
+          <h1 id="frontend">Frontend</h1>
+
+<aside class="warning">Please see the tutorial scene at <code>scenes/tutorial</code></aside>
+
+<h2 id="rooms">Rooms</h2>
+
+<p>HoloR will load the room specified in <code class="prettyprint">src/app.js</code> (defaults to AmiLab).</p>
+<pre class="highlight plaintext"><code>window.HoloR.loadRoom("AmiLab");
+</code></pre>
+
+<p>The room definition includes</p>
+
+<ul>
+<li><strong>size and room geometry</strong> including walls, doors, furniture</li>
+<li><strong>projector configuration</strong> (extrinsic and intrinsic parameters)</li>
+</ul>
+
+<p>HoloR uses <a href="https://github.com/mrdoob/three.js/">three.js</a> and WebGL to render objects.
+The coordinate system</p>
+
+<ul>
+<li>is <strong>right-handed, y-up</strong></li>
+<li>has one of the <strong>lower room-corners</strong> as its <strong>origin</strong></li>
+<li>uses units in <strong>meter</strong></li>
+</ul>
+
+<h2 id="loading-scenes">Loading scenes</h2>
+
+<p>The room only consists of walls, floor and loaded furniture.
+To actually render something we need to load a scene.</p>
+
+<h2 id="creating-new-scenes">Creating new scenes</h2>
+
+<p>Follow the steps to create a new scene named &ldquo;MyTestScene&rdquo;.</p>
+
+<blockquote>
+<p>Create a copy of the dummy template</p>
+</blockquote>
+<pre class="highlight plaintext"><code>cp -R HoloR/lib/scenes/Dummy HoloR/lib/scenes/MyTestScene
 </code></pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Update the scene name at the end of <code class="prettyprint">MyTestScene/index.js</code></p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>HoloRAbstractScene.add("MyTestScene",HoloRScene);
+</code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>Finally make sure you load the scene:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>node start frontend -s MyTestScene
+</code></pre>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<aside class="notice">The terminal where you started <code>node start frontend</code> will show you errors if applicable (as will your browsers development console).</aside>
 
-<h3 id="http-request">HTTP Request</h3>
+<h2 id="adding-objects">Adding Objects</h2>
+<pre class="highlight javascript"><code>    <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+        <span class="c1">//attach image to 3d object</span>
 
-<h3 id="url-parameters">URL Parameters</h3>
+        <span class="k">this</span><span class="p">.</span><span class="nx">mesh</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span>
+            <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">BoxGeometry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+            <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span>
+                <span class="na">color</span><span class="p">:</span><span class="mh">0xff0000</span>
+            <span class="p">})</span>
+        <span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">mesh</span> <span class="o">=</span> <span class="nx">mesh</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">mesh</span><span class="p">);</span>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
+        <span class="c1">//to remove it:</span>
+        <span class="c1">//this.remove(mesh);</span>
+    <span class="p">},</span>
 
-          <h1 id="errors">Errors</h1>
+    <span class="nx">onRender</span><span class="p">(</span><span class="nx">now</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">mesh</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">now</span><span class="o">*</span><span class="nx">speed</span><span class="p">)</span><span class="o">*</span><span class="nx">r</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">mesh</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">now</span><span class="o">*</span><span class="nx">speed</span><span class="p">)</span><span class="o">*</span><span class="nx">r</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+<h2 id="lights-and-shadow">Lights and Shadow</h2>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>Please see the samples.</p>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">light</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">PointLight</span><span class="p">(</span> <span class="mh">0x00ff55</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span> <span class="p">);</span>
+    <span class="nx">light</span><span class="p">.</span><span class="nx">castShadow</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">light</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">light</span><span class="p">);</span>
+</code></pre>
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
-</tr>
-</tbody></table>
+<aside class="notice">Make sure the objects in your scene have a material that responds to light, e.g. <code>MeshPhongMaterial</code> or <code>MeshLambertMaterial</code></aside>
+
+<h2 id="textures">Textures</h2>
+<pre class="highlight javascript"><code>    <span class="c1">//load image</span>
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s1">'http://i.imgur.com/Gs04Gue.png'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">texture</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">TextureLoader</span><span class="p">(</span><span class="nx">url</span><span class="p">,()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Texture has been loaded"</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">//attach image to 3d object</span>
+    <span class="kd">var</span> <span class="nx">mesh</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span>
+        <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">BoxGeometry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+        <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span>
+            <span class="na">map</span><span class="p">:</span> <span class="nx">texture</span>
+        <span class="p">})</span>
+    <span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">mesh</span><span class="p">);</span>
+</code></pre>
+
+<p>Support for</p>
+
+<ul>
+<li>images</li>
+<li>camera</li>
+<li>2D canvas</li>
+<li><p>charts</p></li>
+<li><p>see <code class="prettyprint">src/scenes/TextureExample/index.js</code></p></li>
+</ul>
+
+<h2 id="keyboard-mouse">Keyboard/Mouse</h2>
+<pre class="highlight javascript"><code>    <span class="kd">var</span> <span class="nx">evtName</span> <span class="o">=</span> <span class="s2">"keypress"</span><span class="p">;</span> <span class="c1">//keydown,keyup,keypress,click,dblclick</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">evtName</span><span class="p">,</span><span class="nx">evt</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evtName</span><span class="p">,</span><span class="s2">"fired"</span><span class="p">,</span><span class="nx">evt</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre>
+
+<h2 id="tracking-data">Tracking Data</h2>
+<pre class="highlight javascript"><code><span class="nx">onUpdate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">viewer</span> <span class="o">=</span> <span class="nx">HoloR</span><span class="p">.</span><span class="nx">getNearestViewer</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="c1">//get viewer position and orientation</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">position</span><span class="p">,</span> <span class="nx">viewer</span><span class="p">.</span><span class="nx">quaternion</span><span class="p">);</span>
+
+    <span class="c1">//access skeleton data</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">skeleton</span><span class="p">.</span><span class="nx">joints</span><span class="p">.</span><span class="nx">Head</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+
+<h2 id="camera-microphone-input">Camera/Microphone Input</h2>
+
+<h2 id="spatial-audio">Spatial Audio</h2>
+
+          <h1 id="backend">Backend</h1>
+
+          <h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
+
+<h2 id="multiple-scenes">Multiple scenes</h2>
+
+<blockquote>
+<p>In <code class="prettyprint">src/scenes.js</code>, add the scenes you would like to load like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>require("scenes/MyTestScene");
+require("scenes/AnotherTestScene");
+
+</code></pre>
+
+<blockquote>
+<p>and start the frontend without the &rsquo;-s&rsquo; parameters</p>
+</blockquote>
+<pre class="highlight plaintext"><code>node start frontend
+</code></pre>
+
+<aside class="notice">You can load as many scenes as you want and toggle the scenes using the numblock numeric digit keys (e.g. press 2 to toggle second scene).</aside>
+
+<h2 id="animated-gifs">Animated GIFs</h2>
+
+<p>Sorry, not yet</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="command or code">command or code</a>
           </div>
       </div>
     </div>
