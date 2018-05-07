@@ -19,15 +19,18 @@ search: true
 
 ![HoloR Image](images/holor_homeappliances.jpg)
 
+
+
 **What is HoloR?**
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+HoloR (Holographic Room) is a mixed-reality environment.
+You can read more about it [here](https://pub.uni-bielefeld.de/publication/2900634)
 
 # Preparation
 
 In order to develop stuff for HoloR you **need** the following
 
-- **<a href="https://node.jsorg">Node.js LTS 6</a>** (>= 6.9.0)
+- **<a href="https://node.jsorg">Node.js</a>** (>= 8.9.0)
 - **<a href="https://www.google.de/chrome/browser/desktop/">Google Chrome</a>** or other recent ES6 browser
 - **<a href="https://git-scm.com/downloads">git</a>**
 

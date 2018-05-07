@@ -3,6 +3,9 @@
 
 <aside class="warning">Please see the tutorial scene at <code>scenes/tutorial</code></aside>
 
+```
+node start frontend -s Tutorial
+```
 
 ## Rooms
 
@@ -58,15 +61,18 @@ node start frontend -s MyTestScene
 ```javascript
 	constructor() {
 
-		//attach image to 3d object
-
+		//create a red Box with side-length 1m
 		this.mesh = new THREE.Mesh(
 			new THREE.BoxGeometry(1,1,1),
 			new THREE.MeshBasicMaterial({
 				color:0xff0000
 			})
 		);
+
+		//assign it to this instance for later reference
 		this.mesh = mesh;
+
+		//add it to the scene so it gets rendered
 		this.add(this.mesh);
 
 		//to remove it:
@@ -74,21 +80,23 @@ node start frontend -s MyTestScene
 	},
 
 	onRender(now) {
-		var r = 3;
-		var speed = 0.001;
+
+		//animate x/z position based on current timestamp (now)
+		let r = 3;
+		let speed = 0.001;
 		this.mesh.position.x = Math.sin(now*speed)*r;
 		this.mesh.position.z = Math.cos(now*speed)*r;
 	}
 ```
 
 ## Lights and Shadow
-Please see the samples.
+Please see the examples.
 
 ```javascript
 	var light = new THREE.PointLight( 0x00ff55, 2, 50 );
 	light.castShadow = true;
 	light.position.set(1,2,1);
-	this.add(light);
+	this.addLight(light);
 ```
 
 <aside class="notice">Make sure the objects in your scene have a material that responds to light, e.g. <code>MeshPhongMaterial</code> or <code>MeshLambertMaterial</code></aside>
@@ -99,9 +107,7 @@ Please see the samples.
 ```javascript
 	//load image
 	var url = 'http://i.imgur.com/Gs04Gue.png';
-	var texture = new THREE.TextureLoader(url,() => {
-		console.log("Texture has been loaded");
-	});
+	var texture = new THREE.TextureLoader().load(url);
 
 	//attach image to 3d object
 	var mesh = new THREE.Mesh(
@@ -119,16 +125,23 @@ Support for
 - 2D canvas
 - charts
 
-- see `src/scenes/TextureExample/index.js`
+- see `scenes/TextureExample`
 
 
 
 ## Keyboard/Mouse
 ```javascript
+
+	//genering events
 	var evtName = "keypress"; //keydown,keyup,keypress,click,dblclick
 	this.on(evtName,evt => {
 		console.log(evtName,"fired",evt);
 	});
+
+	//specific keys
+	this.onKeyDown("k",() => {
+		console.log("You pressed k");
+	})
 ```
 
 ## Tracking Data
@@ -145,6 +158,63 @@ onUpdate() {
 }
 ```
 
-## Camera/Microphone Input
+## Camera
+```javascript
+THREE.ext.TextureCreator.camera({
+	width: 1280,
+	height: 720
+},(err, cameraTexture) => {
+	if (err) {
+		return console.log(err);
+	}
+
+	var cube = new THREE.Mesh(
+		new THREE.BoxGeometry(1,1,1),
+		new THREE.MeshBasicMaterial({
+			map: cameraTexture.texture
+		})
+	);
+
+	this.add(cube);
+});
+```
+
+## Audio
+
+```javascript
+const AudioTrack = require("plugins/SpatialAudio/AudioTrack.js");
+
+//load audio sample
+var audioTrack = new AudioTrack(this.resources("myAweSome.mp3"), {
+	autoplay: false,
+	loop: true
+});
+
+[...]
+
+audioTrack.play();
+audioTrack.pause();
+
+```
 
 ## Spatial Audio
+
+```javascript
+const SpatialAudioPlugin = require("plugins/SpatialAudio");
+const SpatialAudio = new SpatialAudioPlugin();
+const AudioTrack = require("plugins/SpatialAudio/AudioTrack.js");
+
+[...]
+
+//load audio sample
+var audioTrack = new AudioTrack(this.resources("myAweSome.mp3"), {
+	autoplay: true,
+	loop: true
+});
+
+var box = new THREE.Mesh(new THREE.BoxGeometry(1,1,1));
+box.add(audioTrack);
+
+[...]
+
+```
